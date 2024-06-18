@@ -1,9 +1,7 @@
 pipeline {
 
   agent any
-  tools{
-    maven 'maven-3'
-  }
+
   environment{
     IMAGE_NAME = 'nanaot/java-app:try.1'
   }
