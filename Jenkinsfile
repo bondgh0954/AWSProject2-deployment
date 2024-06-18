@@ -24,7 +24,7 @@ pipeline {
     stage('deploy'){
       steps{
         script{
-          def dockerCmd = 'docker run -p 8080:8080 -d nanaot/java-app:newp.1'
+          def dockerCmd = 'docker run -p 3080:3080 -d nanaot/java-app:newp.1'
           sshagent(['server-key']) {
              sh "ssh -o StrictHostKeyChecking=no ec2-user@3.70.229.24 ${dockerCmd}"
           }
