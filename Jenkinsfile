@@ -34,14 +34,11 @@ pipeline {
         script{
           echo 'deploying application to ec2 server......'
           echo 'logging in to docker private repo.....'
-          withCredentials([usernamePassword(credentialsId:'dockerhub-credentials',usernameVariable:'USER',passwordVariable:'PASS')]){
-            sh "echo $PASS| docker login -u $USER --password-stdin"
-            def dockerCmd = "docker run -p 8080:8080 -d $IMAGE_NAME"
-            sshagent(['server-key']) {
-                sh "ssh -o StrictHostKeyChecking=no ec2-user@3.70.229.24 ${dockerCmd}"
-            }
-          }
 
+          def dockerCmd = "docker run -p 8080:8080 -d $IMAGE_NAME"
+          sshagent(['server-key']) {
+              sh "ssh -o StrictHostKeyChecking=no ec2-user@3.70.229.24 ${dockerCmd}"
+          }
         }
       }
     }
