@@ -22,10 +22,6 @@ pipeline {
       steps{
         script{
           echo 'building application image....'
-
-
-
-          }
         }
       }
     }
